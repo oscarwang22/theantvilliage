@@ -49,10 +49,9 @@
             <!-- Basic rewards will be inserted here by JavaScript -->
         </div>
 
-        <!-- Section for displaying the current conversion rate -->
-        <h2 class="text-2xl font-light mb-6">Current Conversion Rates</h2>
-        <div id="conversion-rate" class="bg-white shadow-sm p-6 rounded-lg">
-            <!-- Conversion rate will be inserted here by JavaScript -->
+        <h2 class="text-2xl font-light mb-6 mt-12">Current Conversion Rates</h2>
+        <div id="conversion-rate" class="text-center bg-gray-100 text-gray-700 p-4 rounded">
+            Loading current conversion rate...
         </div>
     </div>
 
@@ -123,19 +122,16 @@
             `;
         });
 
-        // Calculate y = 7x^2 + 7x, where x is days from Jan 1, 2024
-        const now = new Date();
-        const targetDate = new Date('2024-01-01T00:00:00Z');
-        const timeDifference = targetDate.getTime() - now.getTime();
-        const millisecondsInDay = 24 * 60 * 60 * 1000;
-        const daysFromJan1 = timeDifference / millisecondsInDay;
-        const y = (7 * Math.pow(daysFromJan1, 2) + 7 * daysFromJan1).toFixed(10);
+        // Function to fetch and update conversion rate
+        function updateConversionRate() {
+            // Simulate an API call to fetch the latest conversion rate (replace with real API in production)
+            const conversionRate = (Math.random() * 10 + 5).toFixed(2);  // Example: Generate a random conversion rate
+            document.getElementById('conversion-rate').textContent = `${conversionRate} CC = 1 Antcoin`;
+        }
 
-        // Display the current conversion rate
-        document.getElementById('conversion-rate').innerHTML = `
-            <h3 class="text-lg font-semibold mb-2">y (CC) = ${y} (1 Antcoin)</h3>
-            <p class="text-gray-600">Current conversion rate calculated as y = 7x² + 7x, where x is days from January 1, 2024.</p>
-        `;
+        // Update conversion rate every 10 seconds
+        setInterval(updateConversionRate, 100);
+        updateConversionRate();  // Initial call on page load
     </script>
 </body>
 </html>
