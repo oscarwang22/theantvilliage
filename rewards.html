@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .premium-rewards {
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+        }
+        .premium-rewards > div {
+            scroll-snap-align: start;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .scrolling-wrapper {
+            animation: scroll 30s linear infinite;
+        }
+        .scrolling-wrapper:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <div class="container mx-auto px-4 py-12">
+        <h1 class="text-4xl font-light mb-12 text-center">Rewards Guide</h1>
+
+        <div id="featured-reward" class="mb-16">
+            <!-- Featured reward will be inserted here by JavaScript -->
+        </div>
+
+        <h2 class="text-2xl font-light mb-6">Premium Rewards</h2>
+        <div class="premium-rewards overflow-x-auto whitespace-nowrap mb-16">
+            <div class="scrolling-wrapper inline-flex space-x-6">
+                <!-- Premium rewards will be inserted here by JavaScript -->
+            </div>
+        </div>
+
+        <h2 class="text-2xl font-light mb-6">Basic Rewards</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Basic rewards will be inserted here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        const basicRewards = [
+            { name: "4 months free Surfshark VPN", price: 10, image: "./assets/rewards/1.jpg?height=200&width=300" },
+            { name: "30 days free Prime Video", price: 10, image: "./assets/rewards/2.jpg?height=200&width=300" },
+            { name: "30% off Nordpass for Business", price: 10, image: "./assets/rewards/3.jpg?height=200&width=300" },
+            { name: "Free 60 day Qobuz music streaming", price: 10, image: "./assets/rewards/4.jpg?height=200&width=300" },
+            { name: "Up to 74% off NordVPN + 3 months extra", price: 10, image: "./assets/rewards/5.jpg?height=200&width=300" },
+            { name: "1 month free of unlimited courses on skill success", price: 10, image: "./assets/rewards/6.jpg?height=200&width=300" },
+            { name: "55% off Magatroxone handheld gaming system", price: 10, image: "./assets/rewards/7.jpg?height=200&width=300" },
+        ];
+
+        const premiumRewards = [
+            { name: "$25 Xbox Gift Card", price: 20000, description: "Get a $25 Xbox Gift Card to spend on games, add-ons, and more.", image: "./assets/rewards/8.jpg?height=200&width=300" },
+            { name: "1 Month Xbox Game Pass Core Membership", price: 8000, description: "Enjoy one month of Xbox Game Pass Core with access to a library of great games.", image: "./assets/rewards/9.jpg?height=200&width=300" },
+            { name: "1 month Xbox Game Pass Ultimate", price: 15000, description: "Get the best of Xbox with Game Pass Ultimate, including Xbox Live Gold and access to hundreds of high-quality games.", image: "./assets/rewards/10.jpg?height=200&width=300" },
+            { name: "$5 Amazon.com.au Gift Card", price: 5000, description: "Receive a $5 Amazon.com.au Gift Card to spend on millions of items.", image: "./assets/rewards/11.jpg?height=200&width=300" },
+            { name: "$10 Amazon.com.au Gift Card", price: 10000, description: "Get a $10 Amazon.com.au Gift Card for even more shopping options.", image: "./assets/rewards/12.jpg?height=200&width=300" },
+        ];
+
+        // Set featured reward
+        const featuredReward = premiumRewards[Math.floor(Math.random() * premiumRewards.length)];
+        document.getElementById('featured-reward').innerHTML = `
+            <div class="bg-white shadow-sm overflow-hidden">
+                <img src="${featuredReward.image}" alt="${featuredReward.name}" class="w-full h-96 object-cover">
+                <div class="p-8">
+                    <h3 class="text-2xl font-light mb-4">${featuredReward.name}</h3>
+                    <p class="mb-4 text-gray-600">${featuredReward.description}</p>
+                    <span class="inline-block bg-gray-100 px-4 py-2 text-sm text-gray-700">
+                        ${featuredReward.price} antcoins
+                    </span>
+                </div>
+            </div>
+        `;
+
+        // Set premium rewards
+        const premiumRewardsContainer = document.querySelector('.scrolling-wrapper');
+        premiumRewards.forEach(reward => {
+            premiumRewardsContainer.innerHTML += `
+                <div class="w-72 flex-shrink-0 bg-white shadow-sm overflow-hidden">
+                    <img src="${reward.image}" alt="${reward.name}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-light mb-2">${reward.name}</h3>
+                        <p class="text-sm mb-4 text-gray-600">${reward.description}</p>
+                        <span class="inline-block bg-gray-100 px-3 py-1 text-sm text-gray-700">
+                            ${reward.price} antcoins
+                        </span>
+                    </div>
+                </div>
+            `;
+        });
+
+        // Set basic rewards
+        const basicRewardsContainer = document.querySelector('.grid');
+        basicRewards.forEach(reward => {
+            basicRewardsContainer.innerHTML += `
+                <div class="bg-white shadow-sm overflow-hidden">
+                    <img src="${reward.image}" alt="${reward.name}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-light mb-4">${reward.name}</h3>
+                        <span class="inline-block bg-gray-100 px-3 py-1 text-sm text-gray-700">
+                            ${reward.price} antcoins
+                        </span>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
