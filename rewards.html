@@ -145,7 +145,7 @@
         const timeDifference = targetDate.getTime() - now.getTime();
         const millisecondsInDay = 24 * 60 * 60 * 1000;
         const daysFromJan1 = timeDifference / millisecondsInDay;
-        const y = (7 * Math.pow(daysFromJan1, 2) + 7 * daysFromJan1).toFixed(10);
+        const y = (700 * Math.pow(daysFromJan1, 2) + 7000 * daysFromJan1).toFixed(10);
 
         // Display the current conversion rate
         document.getElementById('conversion-rate').innerHTML = `
